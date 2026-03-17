@@ -7,7 +7,7 @@ mysqlclient==2.2.7
 psycopg2==2.9.10
 
 pillow==10.4.0
-sqlparse==0.5.1
+sqlparse==0.5.4
 tzdata==2025.1
 
 django-tinymce==4.1.0
