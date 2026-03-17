@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - ezCode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#00c3ff',
+                        darkbg: '#0a0f1d'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"Fira Code"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .blog-card {
+            background: rgba(21, 27, 43, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(30, 41, 59, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .blog-card:hover {
+            border-color: rgba(0, 195, 255, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .category-badge {
+            background: rgba(0, 195, 255, 0.1);
+            color: #00c3ff;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .glass-nav {
+            background: rgba(10, 15, 29, 0.8) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-darkbg min-h-screen font-sans text-white selection:bg-brand selection:text-white overflow-x-hidden">
+    
+    <!-- Efekty tła -->
+    <div class="fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(29,78,216,0.1),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(157,78,221,0.05),transparent_40%)] pointer-events-none z-0"></div>
+
+    <!-- Nawigacja -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-6 max-w-7xl mx-auto w-full text-sm font-medium transition-all duration-300">
+        <div class="flex items-center gap-2 group cursor-pointer">
+            <div class="bg-brand/10 p-2 rounded-lg text-brand group-hover:bg-brand group-hover:text-white transition-colors">
+                <i data-lucide="code-2" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">ez<span class="text-brand">Code</span></span>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-gray-400">
+            <a href="index.html" class="hover:text-white transition-colors">O mnie</a>
+            <a href="oferta.html" class="hover:text-white transition-colors">Oferta</a>
+            <a href="portfolio.html" class="hover:text-white transition-colors">Projekty</a>
+            <a href="#" class="text-white border-b-2 border-brand pb-1">Blog</a>
+            <button class="bg-brand text-white px-6 py-2.5 rounded-full hover:bg-[#0088ff] transition-all shadow-lg shadow-brand/20">Kontakt</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-12">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">Baza <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-purple-500">Wiedzy.</span></h1>
+        <p class="text-gray-400 text-lg max-w-2xl leading-relaxed">Artykuły o programowaniu, architekturze systemów i nowoczesnym designie.</p>
+    </header>
+
+    <!-- Grid Artykułów -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Artykuł 1 -->
+            <article class="blog-card rounded-[2rem] overflow-hidden flex flex-col">
+                <div class="h-52 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800" alt="Architektura Next.js" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute top-4 left-4">
+                        <span class="category-badge">Development</span>
+                    </div>
+                </div>
+                <div class="p-8 flex-grow flex flex-col">
+                    <div class="flex items-center gap-3 text-xs text-gray-500 mb-4">
+                        <span class="flex items-center gap-1"><i data-lucide="user" class="w-3 h-3"></i> ezCode Admin</span>
+                        <span>•</span>
+                        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3"></i> 12.01.2024</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-4 leading-tight hover:text-brand transition-colors cursor-pointer">Architektura Next.js 14: Jak optymalizować Core Web Vitals?</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">Poznaj najnowsze techniki optymalizacji wydajności w Next.js, które pozwolą Twojej stronie osiągnąć 100 punktów w Google Lighthouse.</p>
+                    <div class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center">
+                        <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">8 min czytania</span>
+                        <a href="#" class="text-brand hover:underline flex items-center gap-2 text-sm font-bold">Czytaj <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Artykuł 2 -->
+            <article class="blog-card rounded-[2rem] overflow-hidden flex flex-col">
+                <div class="h-52 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=800" alt="TypeScript vs JavaScript" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4">
+                        <span class="category-badge">Architecture</span>
+                    </div>
+                </div>
+                <div class="p-8 flex-grow flex flex-col">
+                    <div class="flex items-center gap-3 text-xs text-gray-500 mb-4">
+                        <span class="flex items-center gap-1"><i data-lucide="user" class="w-3 h-3"></i> ezCode Admin</span>
+                        <span>•</span>
+                        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3"></i> 05.12.2023</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-4 leading-tight hover:text-brand transition-colors cursor-pointer">TypeScript vs JavaScript – standard w dużych projektach</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">Dlaczego firmy technologiczne rezygnują z czystego JavaScriptu na rzecz TypeSafe rozwiązań? Analiza korzyści biznesowych.</p>
+                    <div class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center">
+                        <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">12 min czytania</span>
+                        <a href="#" class="text-brand hover:underline flex items-center gap-2 text-sm font-bold">Czytaj <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Artykuł 3 -->
+            <article class="blog-card rounded-[2rem] overflow-hidden flex flex-col">
+                <div class="h-52 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800" alt="Docker Containers" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4">
+                        <span class="category-badge">DevOps</span>
+                    </div>
+                </div>
+                <div class="p-8 flex-grow flex flex-col">
+                    <div class="flex items-center gap-3 text-xs text-gray-500 mb-4">
+                        <span class="flex items-center gap-1"><i data-lucide="user" class="w-3 h-3"></i> ezCode Admin</span>
+                        <span>•</span>
+                        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3"></i> 18.11.2023</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-4 leading-tight hover:text-brand transition-colors cursor-pointer">Konteneryzacja dla początkujących: Pierwsze kroki</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">Praktyczny przewodnik po Dockerze. Dowiedz się jak odizolować środowisko i ułatwić wdrażanie aplikacji.</p>
+                    <div class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center">
+                        <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">10 min czytania</span>
+                        <a href="#" class="text-brand hover:underline flex items-center gap-2 text-sm font-bold">Czytaj <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Artykuł 4 -->
+            <article class="blog-card rounded-[2rem] overflow-hidden flex flex-col">
+                <div class="h-52 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=800" alt="UI/UX Figma" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4">
+                        <span class="category-badge">Design</span>
+                    </div>
+                </div>
+                <div class="p-8 flex-grow flex flex-col">
+                    <div class="flex items-center gap-3 text-xs text-gray-500 mb-4">
+                        <span class="flex items-center gap-1"><i data-lucide="user" class="w-3 h-3"></i> ezCode Design</span>
+                        <span>•</span>
+                        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3"></i> 25.10.2023</span>
+                    </div>
+                    <h2 class="text-xl font-bold mb-4 leading-tight hover:text-brand transition-colors cursor-pointer">Micro-interactions: Małe animacje, duża różnica</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">Jak detale w interfejsie wpływają na psychologię użytkownika i zwiększają zaangażowanie w aplikacji.</p>
+                    <div class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center">
+                        <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">7 min czytania</span>
+                        <a href="#" class="text-brand hover:underline flex items-center gap-2 text-sm font-bold">Czytaj <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- STOPKA -->
+    <footer class="bg-darkbg text-white pt-20 pb-10 border-t border-slate-800 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
+                <div>
+                    <h4 class="text-xl font-bold mb-8">Kim jestem ?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Jestem osobą, dla której projektowanie stron www jest życiową pasją, dlatego każdy tworzony projekt jest wykonywany z pełnym zaangażowaniem i skrupulatnością kładącą duży nacisk na detale, aby wszyscy klienci byli zawsze zadowoleni z wykonanej strony internetowej, e-sklepu czy też logotypu.
+                    </p>
+                </div>
+                <div class="md:pl-12">
+                    <h4 class="text-xl font-bold mb-8">Menu</h4>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li><a href="#" class="hover:text-brand transition-colors">Strony WWW</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Sklepy internetowe</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Projektowanie logotypu</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-brand transition-colors">Polityka prywatności</a></li>
+                        <li><a href="#kontakt" class="hover:text-brand transition-colors">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-8">Kontakt</h4>
+                    <div class="space-y-6 text-slate-400 text-sm">
+                        <div class="flex items-center gap-4 group">
+                            <i class="fa-solid fa-envelope text-brand text-lg"></i>
+                            <a href="mailto:info@ezcode.pl" class="group-hover:text-white transition-colors">info@ezcode.pl</a>
+                        </div>
+                        <div class="flex items-center gap-4 group">
+                            <i class="fa-solid fa-phone text-brand text-lg"></i>
+                            <a href="tel:+48883900240" class="group-hover:text-white transition-colors">+48 883 900 240</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800/50 pt-10 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex flex-col md:flex-row items-center gap-2">
+                    <span class="text-slate-500 text-xs">© 2022</span>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-bold text-white text-sm">ez<span class="text-brand">Code</span></span>
+                    </div>
+                    <span class="text-slate-500 text-xs">Wszelkie prawa zastrzeżone</span>
+                </div>
+                
+                <div class="flex items-center gap-6 text-slate-400">
+                    <a href="#" class="hover:text-brand transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
+                    <a href="#" class="hover:text-brand transition-colors"><i class="fa-brands fa-twitter text-xl"></i></a>
+                    <a href="#" class="hover:text-brand transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                    <a href="#" class="hover:text-brand transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Przycisk powrotu do góry -->
+        <a href="#" class="fixed bottom-8 right-8 w-12 h-12 bg-white rounded-full flex items-center justify-center text-darkbg shadow-2xl hover:bg-brand hover:text-white transition-all z-50">
+            <i class="fa-solid fa-arrow-up"></i>
+        </a>
+    </footer>
+
+    <script>
+        // Scroll effect for navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('glass-nav', 'py-3');
+                } else {
+                    navbar.classList.remove('glass-nav', 'py-3');
+                }
+            }
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ezCode - Full Stack Developer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Konfiguracja Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#0ea5e9', // Nowoczesny cyjan/błękit
+                            dark: '#0284c7',
+                            light: '#38bdf8'
+                        },
+                        darkbg: '#0f172a', // Głęboki granat/czerń (Slate 900)
+                        cardbg: '#1e293b'  // Tło kart (Slate 800)
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* darkbg */
+            color: #f8fafc;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Subtelny animowany gradient w tle sekcji Hero */
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.15), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.15), transparent 40%);
+        }
+
+        /* Efekt Glassmorphism dla nawigacji */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Proste animacje wejścia */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand selection:text-white">
+
+    <!-- NAWIGACJA (Sticky) -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-brand to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand/30 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-white">ez<span class="text-brand">Code</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#omnie" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">O mnie</a>
+                    <a href="#umiejetnosci" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Umiejętności</a>
+                    <a href="#projekty" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Projekty</a>
+                    <a href="#kontakt" class="bg-brand hover:bg-brand-dark text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg shadow-brand/25">
+                        Kontakt
+                    </a>
+                </nav>
+
+                <!-- Hamburger Button (Mobile) -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-nav border-b border-slate-800 shadow-xl">
+            <div class="px-4 py-6 space-y-4 flex flex-col">
+                <a href="#omnie" class="text-slate-300 hover:text-brand font-medium text-lg">O mnie</a>
+                <a href="#umiejetnosci" class="text-slate-300 hover:text-brand font-medium text-lg">Umiejętności</a>
+                <a href="#projekty" class="text-slate-300 hover:text-brand font-medium text-lg">Projekty</a>
+                <a href="#kontakt" class="text-brand font-medium text-lg pt-2">Skontaktuj się</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden hero-gradient">
+        <!-- Dekoracyjne elementy w tle -->
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-brand/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Tekst -->
+                <div class="animate-fade-in-up">
+                    <div class="inline-block px-4 py-1.5 rounded-full border border-brand/30 bg-brand/10 text-brand text-sm font-medium mb-6">
+                        <i class="fa-solid fa-terminal mr-2"></i> Dostępny do współpracy
+                    </div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                        Cześć, jestem <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-purple-500">Full Stack</span><br>
+                        Developerem.
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-lg leading-relaxed">
+                        Projektuję i koduję nowoczesne, w pełni responsywne aplikacje webowe oraz strony internetowe. Zmieniam pomysły w działający kod.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#projekty" class="bg-brand hover:bg-brand-dark text-white text-center px-8 py-4 rounded-xl font-medium transition-all shadow-lg shadow-brand/25 flex items-center justify-center">
+                            Moje realizacje <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="bg-cardbg hover:bg-slate-700 border border-slate-700 text-white text-center px-8 py-4 rounded-xl font-medium transition-all flex items-center justify-center">
+                            <i class="fa-brands fa-github text-xl mr-2"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Grafika / Kod -->
+                <div class="hidden lg:block animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="bg-[#1e1e1e] rounded-2xl p-4 shadow-2xl border border-slate-800 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <div class="flex gap-2 mb-4 px-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="code-font text-sm text-slate-300 p-4 bg-[#252526] rounded-xl overflow-hidden">
+<pre><span class="text-purple-400">const</span> <span class="text-blue-400">developer</span> = {
+  <span class="text-brand">name</span>: <span class="text-green-300">'ezCode'</span>,
+  <span class="text-brand">role</span>: <span class="text-green-300">'Full Stack Web Developer'</span>,
+  <span class="text-brand">skills</span>: [<span class="text-green-300">'PHP'</span>, <span class="text-green-300">'JavaScript'</span>, <span class="text-green-300">'Tailwind'</span>],
+  <span class="text-brand">responsive</span>: <span class="text-orange-400">true</span>,
+  <span class="text-brand">buildWebsite</span>: <span class="text-purple-400">function</span>() {
+    <span class="text-slate-400">// Zmieniamy pomysły w rzeczywistość</span>
+    <span class="text-blue-400">return</span> <span class="text-green-300">'Sukces!'</span>;
+  }
+};</pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <a href="#omnie" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-slate-500 hover:text-brand transition-colors animate-bounce">
+            <i class="fa-solid fa-arrow-down text-2xl"></i>
+        </a>
+    </section>
+
+    <!-- O MNIE -->
+    <section id="omnie" class="py-24 bg-darkbg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Obrazek / Informacje -->
+                <div class="relative">
+                    <div class="aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden relative z-10 border border-slate-800">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Programista przy pracy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <!-- Element pływający -->
+                    <div class="absolute -bottom-8 -right-8 bg-cardbg border border-slate-700 p-6 rounded-2xl shadow-xl z-20 hidden md:block">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-brand/20 text-brand rounded-full flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">100% Responsywności</h4>
+                                <p class="text-sm text-slate-400">Idealnie na PC i Mobile</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tekst -->
+                <div>
+                    <h2 class="text-brand font-semibold tracking-wider uppercase text-sm mb-2">Poznajmy się</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Od pomysłu do wdrożenia.</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Wszystkie moje projekty są responsywne, co niesie za sobą możliwość poprawnego wyświetlania stron internetowych i aplikacji na urządzeniach mobilnych oraz PC. 
+                    </p>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Moja przygoda z programowaniem trwa od lat. Do czasu stworzenia <strong>ezcode.pl</strong> moje projekty widniały pod domeną www.page4me.pl. Stale rozwijam swoje umiejętności, aby dostarczać rozwiązania najwyższej jakości, opierając się na nowoczesnych technologiach takich jak PHP, JavaScript i nowoczesne frameworki CSS.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6 border-t border-slate-800 pt-8">
+                        <div>
+                            <span class="block text-3xl font-bold text-white mb-1">5+</span>
+                            <span class="text-sm text-slate-400">Lat Doświadczenia</span>
+                        </div>
+                        <div>
+                            <span class="block text-3xl font-bold text-white mb-1">50+</span>
+                            <span class="text-sm text-slate-400">Zrealizowanych Projektów</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- UMIEJĘTNOŚCI -->
+    <section id="umiejetnosci" class="py-24 bg-cardbg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-brand font-semibold tracking-wider uppercase text-sm mb-2">Moje Umiejętności</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Technologie, z którymi pracuję</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
+                
+                <!-- Skill 1 -->
+                <div>
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-medium text-white flex items-center"><i class="fa-brands fa-php text-brand text-xl mr-2"></i> PHP & MySQL</span>
+                        <span class="text-sm text-slate-400">65%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 border border-slate-700">
+                        <div class="bg-gradient-to-r from-brand to-blue-500 h-2 rounded-full" style="width: 65%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div>
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-medium text-white flex items-center"><i class="fa-brands fa-html5 text-brand text-xl mr-2"></i> HTML5 & CSS3</span>
+                        <span class="text-sm text-slate-400">90%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 border border-slate-700">
+                        <div class="bg-gradient-to-r from-brand to-blue-500 h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div>
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-medium text-white flex items-center"><i class="fa-brands fa-js text-brand text-xl mr-2"></i> JavaScript (ES6+)</span>
+                        <span class="text-sm text-slate-400">80%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 border border-slate-700">
+                        <div class="bg-gradient-to-r from-brand to-blue-500 h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div>
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-medium text-white flex items-center"><i class="fa-brands fa-css3-alt text-brand text-xl mr-2"></i> Tailwind CSS / Bootstrap</span>
+                        <span class="text-sm text-slate-400">85%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2 border border-slate-700">
+                        <div class="bg-gradient-to-r from-brand to-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Inne technologie jako tagi -->
+            <div class="mt-16 flex flex-wrap justify-center gap-3">
+                <span class="px-4 py-2 bg-darkbg border border-slate-700 rounded-full text-sm text-slate-300">Git / GitHub</span>
+                <span class="px-4 py-2 bg-darkbg border border-slate-700 rounded-full text-sm text-slate-300">WordPress</span>
+                <span class="px-4 py-2 bg-darkbg border border-slate-700 rounded-full text-sm text-slate-300">Responsive Web Design</span>
+                <span class="px-4 py-2 bg-darkbg border border-slate-700 rounded-full text-sm text-slate-300">UX/UI</span>
+                <span class="px-4 py-2 bg-darkbg border border-slate-700 rounded-full text-sm text-slate-300">Figma</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJEKTY (Portfolio) -->
+    <section id="projekty" class="py-24 bg-darkbg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-brand font-semibold tracking-wider uppercase text-sm mb-2">Portfolio</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white">Wybrane Realizacje</h3>
+                </div>
+                <a href="https://github.com" target="_blank" class="hidden sm:inline-flex text-brand hover:text-white transition-colors items-center font-medium">
+                    Zobacz więcej na GitHub <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Projekt 1 -->
+                <div class="group bg-cardbg border border-slate-800 rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl hover:shadow-brand/20">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Projekt E-commerce" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cardbg to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-xs font-mono px-2 py-1 bg-brand/10 text-brand rounded">PHP</span>
+                            <span class="text-xs font-mono px-2 py-1 bg-slate-800 text-slate-300 rounded">MySQL</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors">Platforma E-commerce</h4>
+                        <p class="text-sm text-slate-400 mb-4">Autorski system CMS dla sklepu internetowego. W pełni responsywny panel administracyjny i optymalizacja SEO.</p>
+                        <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand transition-colors">
+                            Szczegóły <i class="fa-solid fa-angle-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projekt 2 -->
+                <div class="group bg-cardbg border border-slate-800 rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl hover:shadow-brand/20">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Aplikacja Webowa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cardbg to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-xs font-mono px-2 py-1 bg-brand/10 text-brand rounded">JavaScript</span>
+                            <span class="text-xs font-mono px-2 py-1 bg-slate-800 text-slate-300 rounded">Tailwind</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors">Aplikacja Finansowa</h4>
+                        <p class="text-sm text-slate-400 mb-4">Aplikacja webowa do zarządzania budżetem domowym. Dynamiczne wykresy i responsywny interfejs użytkownika.</p>
+                        <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand transition-colors">
+                            Szczegóły <i class="fa-solid fa-angle-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projekt 3 -->
+                <div class="group bg-cardbg border border-slate-800 rounded-2xl overflow-hidden hover:-translate-y-2 transition-transform duration-300 hover:shadow-2xl hover:shadow-brand/20">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Strona Wizytówka" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-cardbg to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-xs font-mono px-2 py-1 bg-brand/10 text-brand rounded">HTML/CSS</span>
+                            <span class="text-xs font-mono px-2 py-1 bg-slate-800 text-slate-300 rounded">RWD</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors">Strona Firmowa (page4me)</h4>
+                        <p class="text-sm text-slate-400 mb-4">Responsywna strona internetowa z nowoczesnymi animacjami, zaprojektowana w podejściu Mobile First.</p>
+                        <a href="#" class="inline-flex items-center text-sm font-medium text-white hover:text-brand transition-colors">
+                            Szczegóły <i class="fa-solid fa-angle-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="py-24 bg-cardbg border-t border-slate-800 relative overflow-hidden">
+        <!-- Dekoracja tła -->
+        <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full bg-brand/5 rounded-l-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Info Kontaktowe -->
+                <div>
+                    <h2 class="text-brand font-semibold tracking-wider uppercase text-sm mb-2">Kontakt</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Porozmawiajmy o Twoim projekcie</h3>
+                    <p class="text-slate-400 mb-8 max-w-md leading-relaxed">
+                        Masz pomysł na aplikację lub potrzebujesz nowoczesnej strony www? Napisz do mnie. Chętnie doradzę i pomogę zrealizować Twój cel.
+                    </p>
+
+                    <div class="space-y-6">
+                        <a href="mailto:info@ezcode.pl" class="flex items-center group">
+                            <div class="w-14 h-14 bg-darkbg border border-slate-700 rounded-xl flex items-center justify-center text-brand text-xl group-hover:bg-brand group-hover:text-white transition-all shadow-lg">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-slate-400 mb-1">Wyślij e-mail</p>
+                                <p class="text-lg font-bold text-white group-hover:text-brand transition-colors">info@ezcode.pl</p>
+                            </div>
+                        </a>
+
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-darkbg border border-slate-700 rounded-xl flex items-center justify-center text-brand text-xl shadow-lg">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-slate-400 mb-1">Lokalizacja / Działalność</p>
+                                <p class="text-lg font-bold text-white">Cała Polska (Zdalnie)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="mt-10 flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-darkbg border border-slate-700 rounded-lg flex items-center justify-center text-slate-400 hover:bg-brand hover:text-white hover:border-brand transition-all">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-darkbg border border-slate-700 rounded-lg flex items-center justify-center text-slate-400 hover:bg-brand hover:text-white hover:border-brand transition-all">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-darkbg border border-slate-700 rounded-lg flex items-center justify-center text-slate-400 hover:bg-brand hover:text-white hover:border-brand transition-all">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Formularz Kontaktowy (Wizualny) -->
+                <div class="bg-darkbg border border-slate-800 p-8 rounded-2xl shadow-xl">
+                    <form class="space-y-5" onsubmit="event.preventDefault(); alert('Formularz testowy - do podłączenia pod backend PHP');">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-1">Imię i nazwisko</label>
+                            <input type="text" placeholder="Jan Kowalski" class="w-full bg-cardbg border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-1">Adres e-mail</label>
+                            <input type="email" placeholder="twój@email.pl" class="w-full bg-cardbg border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-1">Wiadomość</label>
+                            <textarea rows="4" placeholder="Opisz swój projekt..." class="w-full bg-cardbg border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3.5 rounded-lg transition-colors shadow-lg shadow-brand/25 flex justify-center items-center">
+                            Wyślij wiadomość <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-darkbg py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-2 mb-4 md:mb-0 text-slate-400">
+                <i class="fa-solid fa-code text-brand"></i>
+                <span class="font-heading font-bold">ez<span class="text-brand">Code</span></span>
+                <span class="text-sm">| Wszelkie prawa zastrzeżone © 2026</span>
+            </div>
+            <div class="flex gap-6 text-sm text-slate-500">
+                <a href="#" class="hover:text-brand transition-colors">Polityka Prywatności</a>
+                <span>Projektowany pod domeną ezcode.pl (dawniej page4me.pl)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SKRYPTY -->
+    <script>
+        // Logika nawigacji Sticky (Glassmorphism)
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'py-3');
+                navbar.classList.remove('bg-transparent', 'py-4');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-3');
+                navbar.classList.add('bg-transparent', 'py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Zamknij menu po kliknięciu na urządzeniach mobilnych
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
