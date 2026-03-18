@@ -1,0 +1,48 @@
+services:
+  # 1. Aplikacja Laravel (PHP 8.4)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    restart: unless-stopped
+    ports: 
+      - "8000:8000"
+    working_dir: /var/www/html/ezcode
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel_network
+
+  # 2. Baza danych (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: laravel_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel_db
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: user_password
+    ports:
+      - "3306:3306"
+    networks:
+      - laravel_network
+
+  # 3. phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: laravel_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root_password
+    networks:
+      - laravel_network
+
+networks:
+  laravel_network:
+    driver: bridge
