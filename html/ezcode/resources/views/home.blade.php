@@ -43,7 +43,7 @@
   <span class="text-brand">skills</span>: [<span class="text-green-300">'PHP'</span>, <span class="text-green-300">'JavaScript'</span>, <span class="text-green-300">'Tailwind'</span>],
   <span class="text-brand">responsive</span>: <span class="text-orange-400">true</span>,
   <span class="text-brand">buildWebsite</span>: <span class="text-purple-400">function</span>() {
-    <span class="text-slate-500">// Zmieniamy pomysły w rzeczywistość</span>
+    <span class="text-slate-500">// Zmieniam pomysły w rzeczywistość</span>
     <span class="text-blue-400">return</span> <span class="text-green-300">'Sukces!'</span>;
   }
 };</pre>
@@ -379,5 +379,98 @@
             </div>
         </div>
     </section>
-    
+     <!-- PROJEKTY SECTION -->
+    <section id="projekty" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+                <div class="max-w-xl">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Ostatnie <span class="text-brand">Realizacje</span></h2>
+                    <p class="text-slate-400 text-sm uppercase tracking-widest font-bold">Prezentacja wybranych projektów</p>
+                </div>
+                <a href="#" class="text-brand font-bold border-b border-brand/30 pb-1 hover:border-brand transition-all">Zobacz wszystkie projekty</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Projekt 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-video rounded-3xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Project 1">
+                        <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-brand text-xs font-bold uppercase tracking-wider">Web Design / Development</span>
+                            <h4 class="text-2xl font-bold mt-1">Lex Partners Portal</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projekt 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-video rounded-3xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Project 2">
+                        <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-brand text-xs font-bold uppercase tracking-wider">E-commerce / Shopify</span>
+                            <h4 class="text-2xl font-bold mt-1">Aroma Beans Shop</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	<!-- BLOG PREVIEW (OPCJONALNIE) -->
+    <section id="blog" class="py-24 bg-[#111827]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h2 class="text-brand font-bold uppercase text-xs tracking-widest mb-3">BLOG</h2>
+                    <h3 class="text-4xl font-bold text-white">Wiedza i aktualności</h3>
+                </div>
+                <a href="#" class="text-brand hover:text-white transition-colors flex items-center gap-2 font-medium">
+                    Zobacz wszystkie wpisy <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article class="bg-darkbg p-6 rounded-2xl border border-slate-800">
+                    <div class="text-slate-500 text-xs mb-4 uppercase tracking-wider">12 Marca 2024</div>
+                    <h4 class="text-xl font-bold text-white mb-4 hover:text-brand cursor-pointer">Jak zoptymalizować stronę pod SEO?</h4>
+                    <p class="text-slate-400 text-sm">Poznaj 5 kluczowych kroków, które pomogą Ci wspiąć się w wynikach wyszukiwania.</p>
+                </article>
+                <article class="bg-darkbg p-6 rounded-2xl border border-slate-800">
+                    <div class="text-slate-500 text-xs mb-4 uppercase tracking-wider">05 Marca 2024</div>
+                    <h4 class="text-xl font-bold text-white mb-4 hover:text-brand cursor-pointer">Przyszłość technologii Web w 2024</h4>
+                    <p class="text-slate-400 text-sm">Co czeka branżę web developmentu w nadchodzących miesiącach? Analiza trendów.</p>
+                </article>
+                <article class="bg-darkbg p-6 rounded-2xl border border-slate-800">
+                    <div class="text-slate-500 text-xs mb-4 uppercase tracking-wider">28 Lutego 2024</div>
+                    <h4 class="text-xl font-bold text-white mb-4 hover:text-brand cursor-pointer">Dlaczego responsywność to podstawa?</h4>
+                    <p class="text-slate-400 text-sm">Wpływ Mobile-First Indexing na widoczność Twojego biznesu w sieci.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROZPOCZNIJ PROJEKT -->
+    <section class="py-24 bg-darkbg border-t border-slate-800/50">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h3 class="text-4xl font-bold text-white mb-6">Rozpocznijmy projekt</h3>
+            <p class="text-slate-400 mb-10">
+                Skontaktuj się ze mną, a wspólnie stworzymy coś wyjątkowego. <br class="hidden md:block">
+                Odpowiadam zazwyczaj w ciągu 24h.
+            </p>
+            <a href="mailto:info@ezcode.pl" class="inline-block bg-brand hover:bg-brand-dark text-white px-10 py-4 rounded-xl font-bold transition-all shadow-xl shadow-brand/20">
+                info@ezcode.pl
+            </a>
+        </div>
+    </section>
 @endsection
