@@ -14,9 +14,13 @@
                     <a href="{{ url('/oferta') }}" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Oferta</a>
                     <a href="{{ url('/projekty') }}" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Projekty</a>
 					<a href="{{ url('/blog') }}" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Blog</a>
-                    <a href="#kontakt" class="bg-brand hover:bg-brand-dark text-white px-6 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-brand/25">
-                        Wyloguj
-                    </a>
+                    
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <button type="submit" class="bg-brand hover:bg-brand-dark text-white px-6 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-brand/25">
+                            Wyloguj
+                        </button>
+                    </form>
                 </nav>
 
                 <button id="mobile-menu-btn" class="md:hidden text-slate-300 p-2">

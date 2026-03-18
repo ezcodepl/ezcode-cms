@@ -1,4 +1,4 @@
-@extends('../../layouts.app')
+@extends('layouts.admin') 
 
 @section('content')
 <div class="max-w-4xl mx-auto p-6 pt-32">
@@ -55,12 +55,7 @@
 
             <div class="space-y-2">
                 <label for="content" class="block text-sm font-medium text-gray-300 ml-1">Treść posta</label>
-                <textarea name="content" 
-                          id="content"
-                          rows="8" 
-                          placeholder="Zacznij pisać tutaj..."
-                          class="w-full bg-darkbg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all resize-none shadow-inner"
-                          required>{{ old('content', $post->content ?? '') }}</textarea>
+                <textarea name="content" id="content" rows="8" placeholder="Zacznij pisać tutaj..." class="w-full bg-darkbg border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-all resize-none shadow-inner" required></textarea>
                 @error('content') <p class="text-red-500 text-xs mt-1 ml-1">{{ $message }}</p> @enderror
             </div>
 

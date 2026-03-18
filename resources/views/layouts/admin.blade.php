@@ -24,6 +24,7 @@
             }
         }
     </script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -65,58 +66,32 @@
 
     @stack('scripts')
     
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // NAVBAR SCROLL EFFECT
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar?.classList.add('glass-nav', 'py-3');
-                } else {
-                    navbar?.classList.remove('glass-nav', 'py-3');
-                }
-            });
-
-            // LOGIKA SLIDERA
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.dot');
-            let slideIndex = 0;
-            let slideInterval;
-
-            if (slides.length > 0) {
-                function showSlide(n) {
-                    slides.forEach(s => s.classList.remove('active'));
-                    dots.forEach(d => d.classList.remove('active'));
-                    slideIndex = (n + slides.length) % slides.length;
-                    slides[slideIndex].classList.add('active');
-                    if(dots[slideIndex]) dots[slideIndex].classList.add('active');
-                }
-
-                window.changeSlide = (n) => { showSlide(slideIndex + n); resetInterval(); };
-                window.currentSlide = (n) => { showSlide(n); resetInterval(); };
-
-                const startInterval = () => { slideInterval = setInterval(() => showSlide(slideIndex + 1), 8000); };
-                const resetInterval = () => { clearInterval(slideInterval); startInterval(); };
-
-                showSlide(0);
-                startInterval();
-            }
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof tinymce !== 'undefined') {
+        tinymce.init({
+            selector: 'textarea#content',
+            plugins: 'image link media table code lists',
+            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright | bullist numlist | link image media | code',
+            height: 400,
+            menubar: false,
+            
+            // ===== DARK / TRANSPARENT STYLE =====
+            skin: 'oxide-dark', // wbudowana ciemna skórka
+            content_css: 'dark', // wbudowany dark content CSS
+            // jeśli chcesz w pełni transparent, można nadpisać poniżej
+            content_style: "body { background-color: transparent; color: #f8fafc; font-family: 'Inter', sans-serif; }",
+            
+            images_upload_url: '{{ route("admin.posts.uploadImage") }}',
+            images_upload_credentials: true,
+            automatic_uploads: true,
+            images_reuse_filename: true
         });
-          // Scroll effect for navbar
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (navbar) {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('glass-nav', 'py-3');
-                } else {
-                    navbar.classList.remove('glass-nav', 'py-3');
-                }
-            }
-        });
-
-        // Initialize Lucide icons
-        lucide.createIcons();
-    </script>
-    
+        console.log("TinyMCE initialized (dark)");
+    } else {
+        console.error("TinyMCE not loaded");
+    }
+});
+</script>
 </body>
 </html>

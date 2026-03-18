@@ -39,3 +39,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 });
 
 Route::post('admin/posts/upload-image', [PostController::class, 'uploadImage'])->name('admin.posts.uploadImage');
+
+Route::post('/admin/logout', function () {
+    auth()->logout(); // wylogowuje użytkownika z sesji
+    request()->session()->invalidate(); // unieważnia sesję
+    request()->session()->regenerateToken(); // regeneruje CSRF token
+    return redirect('/login'); // przekierowanie po logout
+})->name('admin.logout')->middleware('auth');
