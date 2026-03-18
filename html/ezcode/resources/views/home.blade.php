@@ -1,6 +1,13 @@
 @extends('layouts.app') @section('title', 'Strona Główna - Witamy!')
 
 @section('content')
+<!-- Efekty tła -->
+    <div
+        class="fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(29,78,216,0.12),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(157,78,221,0.08),transparent_40%)] pointer-events-none z-0">
+    </div>
+    <div
+        class="fixed inset-0 opacity-[0.02] pointer-events-none z-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
+    </div>
       <!-- HERO SLIDER SECTION -->
     <section class="relative min-h-screen flex items-center pt-20 hero-gradient overflow-hidden">
         <div id="hero-slider" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -473,4 +480,5 @@
             </a>
         </div>
     </section>
+   
 @endsection

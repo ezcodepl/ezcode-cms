@@ -11,9 +11,9 @@
 
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="{{ url('/o-mnie') }}" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">O mnie</a>
-                    <a href="#oferta" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Oferta</a>
-                    <a href="#projekty" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Projekty</a>
-					<a href="#blog" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Blog</a>
+                    <a href="{{ url('/oferta') }}" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Oferta</a>
+                    <a href="{{ url('/projekty') }}" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Projekty</a>
+					<a href="{{ url('/blog') }}" class="text-sm font-medium text-slate-300 hover:text-brand transition-colors">Blog</a>
                     <a href="#kontakt" class="bg-brand hover:bg-brand-dark text-white px-6 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-brand/25">
                         Kontakt
                     </a>
